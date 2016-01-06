@@ -1,0 +1,20 @@
+# BND/OSGI Properties by jjohnstn
+Application-Name: Bouncy Castle Provider
+Bundle-Name: bcprov
+Bundle-RequiredExecutionEnvironment: J2SE-1.5, JavaSE-1.6, JavaSE-1.7
+Bundle-SymbolicName: bcprov
+Bundle-Version: @VERSION@
+Built-By: ${user.name}
+Created-By: ${java.version} (${java.vendor})
+Extension-Name: org.bouncycastle.bcprovider
+Implementation-Vendor: BouncyCastle.org
+Implementation-Vendor-Id: org.bouncycastle
+Implementation-Version: @VERSION@.0
+Originally-Created-By: ${java.version} (${java.vendor})
+Specification-Vendor: BouncyCastle.org
+Specification-Version: 1.1
+Application-Library-Allowable-Codebase: *
+Caller-Allowable-Codebase: *
+Codebase: *
+Permissions: all-permissions
+Trusted-Library: true
