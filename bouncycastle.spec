@@ -9,7 +9,7 @@
 Summary:          Bouncy Castle Crypto Package for Java
 Name:             %{?scl_prefix}bouncycastle
 Version:          %{ver}
-Release:          5.2%{?dist}
+Release:          5.4%{?dist}
 License:          MIT
 URL:              http://www.bouncycastle.org
 # Use original sources from here on out.
@@ -68,8 +68,6 @@ pushd src
   # Exclude all */test/* files except org.bouncycastle.util.test, cf. upstream
   files="$(find . -type f \( -name '*.class' -o -name '*.properties' \) -not -path '*/test/*')"
   files="$files $(find . -type f -path '*/org/bouncycastle/util/test/*.class')"
-  files="$files $(find . -type f -path '*/org/bouncycastle/jce/provider/test/*.class')"
-  files="$files $(find . -type f -path '*/org/bouncycastle/ocsp/test/*.class')"
   test ! -d classes && mf="" \
     || mf="`find classes/ -type f -name "*.mf" 2>/dev/null`"
   test -n "$mf" && jar cvfm $jarfile $mf $files \
@@ -170,6 +168,7 @@ fi
 %files -f .mfiles
 %doc CONTRIBUTORS.html index.html
 %doc LICENSE.html
+%dir %{_javadir}/gcj-endorsed
 %{_javadir}/gcj-endorsed/bcprov.jar
 %{_sysconfdir}/java/security/security.d/2000-%{classname}
 
@@ -178,6 +177,13 @@ fi
 %doc LICENSE.html
 
 %changelog
+* Wed Apr 06 2016 Mat Booth <mat.booth@redhat.com> - 1.52-5.4
+- Move some tests that were erroneously in the main jar,
+  avoids a runtime dep on junit in OSGi metadata
+
+* Tue Feb 09 2016 Mat Booth <mat.booth@redhat.com> - 1.52-5.3
+- Fix unowned directory
+
 * Wed Jul 1 2015 akurtakov <akurtakov@localhost.localdomain> 1.52-5.2
 - Do not use macro javac/jar but straight executables.
 
